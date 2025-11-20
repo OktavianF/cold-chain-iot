@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cold Chain IoT Monitoring Dashboard Design System */
+
+@layer base {
+  :root {
+    /* Core Background & Text */
+    --background: 220 26% 97%;
+    --foreground: 220 40% 12%;
+
+    /* Card System */
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 12%;
+
+    /* Interactive Elements */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 12%;
+
+    /* Brand Colors - Industrial Blue Theme */
+    --primary: 210 85% 35%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 210 85% 45%;
+
+    --secondary: 220 20% 92%;
+    --secondary-foreground: 220 40% 15%;
+
+    /* Status & States */
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 20% 50%;
+
+    --accent: 190 85% 35%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Alert System */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --warning: 35 85% 55%;
+    --warning-foreground: 0 0% 98%;
+    
+    --success: 142 85% 35%;
+    --success-foreground: 0 0% 98%;
+
+    /* Monitoring Status Colors */
+    --status-online: 142 70% 45%;
+    --status-offline: 0 70% 55%;
+    --status-critical: 0 85% 60%;
+    
+    /* Temperature Status */
+    --temp-normal: 142 70% 45%;
+    --temp-warning: 35 85% 55%;
+    --temp-critical: 0 85% 60%;
+    
+    /* Ammonia Status */
+    --ammonia-safe: 142 70% 45%;
+    --ammonia-caution: 35 85% 55%;
+    --ammonia-danger: 0 85% 60%;
+
+    /* UI Elements */
+    --border: 220 25% 88%;
+    --input: 220 25% 88%;
+    --ring: 210 85% 35%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-dashboard: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05));
+    --gradient-hero-glow: radial-gradient(ellipse at top, hsl(var(--primary) / 0.15), transparent 50%);
+    
+    /* Shadows */
+    --shadow-card: 0 4px 20px hsl(var(--primary) / 0.08);
+    --shadow-alert: 0 8px 25px hsl(var(--destructive) / 0.15);
+    --shadow-success: 0 4px 20px hsl(var(--success) / 0.15);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --radius: 0.5rem;
+
+    /* Sidebar Design */
+    --sidebar-background: 220 30% 18%;
+    --sidebar-foreground: 220 15% 85%;
+    --sidebar-primary: 210 85% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 220 25% 22%;
+    --sidebar-accent-foreground: 220 15% 90%;
+    --sidebar-border: 220 25% 25%;
+    --sidebar-ring: 210 85% 45%;
+  }
+
+  .dark {
+    --background: 220 30% 8%;
+    --foreground: 220 15% 92%;
+
+    --card: 220 25% 12%;
+    --card-foreground: 220 15% 92%;
+
+    --popover: 220 25% 12%;
+    --popover-foreground: 220 15% 92%;
+
+    --primary: 210 85% 45%;
+    --primary-foreground: 220 30% 8%;
+    --primary-glow: 210 85% 55%;
+
+    --secondary: 220 25% 18%;
+    --secondary-foreground: 220 15% 85%;
+
+    --muted: 220 25% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 190 85% 45%;
+    --accent-foreground: 220 30% 8%;
+
+    --destructive: 0 85% 65%;
+    --destructive-foreground: 220 30% 8%;
+    
+    --warning: 35 85% 65%;
+    --warning-foreground: 220 30% 8%;
+
+    --border: 220 25% 20%;
+    --input: 220 25% 20%;
+    --ring: 210 85% 45%;
+    
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 220 15% 85%;
+    --sidebar-primary: 210 85% 45%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 25% 15%;
+    --sidebar-accent-foreground: 220 15% 90%;
+    --sidebar-border: 220 25% 18%;
+    --sidebar-ring: 210 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Dashboard Cards */
+  .metric-card {
+    @apply bg-card border shadow-card rounded-lg p-6 transition-all duration-300 hover:shadow-xl;
+    background: var(--gradient-card);
+  }
+  
+  .metric-card-critical {
+    @apply border-destructive/30 bg-destructive/5;
+    box-shadow: var(--shadow-alert);
+  }
+  
+  .metric-card-warning {
+    @apply border-warning/30;
+    background: linear-gradient(145deg, hsl(var(--warning) / 0.05), hsl(var(--warning) / 0.02));
+  }
+  
+  .metric-card-success {
+    @apply border-success/30;
+    background: linear-gradient(145deg, hsl(var(--success) / 0.05), hsl(var(--success) / 0.02));
+    box-shadow: var(--shadow-success);
+  }
+
+  /* Status Indicators */
+  .status-online {
+    @apply text-success bg-success/10 border-success/20;
+  }
+  
+  .status-offline {
+    @apply text-destructive bg-destructive/10 border-destructive/20;
+  }
+  
+  .status-critical {
+    @apply text-destructive bg-destructive/15 border-destructive/30 animate-pulse;
+  }
+
+  /* Alert Animations */
+  .alert-pulse {
+    animation: alertPulse 2s infinite;
+  }
+  
+  @keyframes alertPulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 hsl(var(--destructive) / 0.7);
+    }
+    50% { 
+      transform: scale(1.02);
+      box-shadow: 0 0 0 10px hsl(var(--destructive) / 0);
+    }
+  }
+
+  /* Chart Container */
+  .chart-container {
+    @apply bg-card/50 backdrop-blur-sm border rounded-lg p-4;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Hero Section Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+}
